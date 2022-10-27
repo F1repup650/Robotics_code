@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="Test Autonomous OpMode 2", group="Linear Opmode")
+@Autonomous(name="Test Autonomous OpMode 2", group="Test Linear Opmode")
 //@Disabled
 public class autotest2 extends LinearOpMode
 {
