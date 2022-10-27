@@ -37,6 +37,9 @@ public class filename extends LinearOpMode
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
         waitForStart();
+        /*
+        * Your code goes here
+        */
         motor.stop();
         runtime.reset();
         while (opModeIsActive()) {
