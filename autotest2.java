@@ -42,7 +42,7 @@ public class autotest2 extends LinearOpMode
         runtime.reset();
         motor.target(5000,5000,5000,5000);
         motor.forward(ENCSPD);
-        while (opModeIsActive() && (runtime.seconds()<1.0)){
+        while (opModeIsActive() && (runtime.seconds() < 2.5)) {
             telemetry.addData("Path","Step 1: %4.1f S Elapsed", runtime.seconds());
         }
         motor.stop();
