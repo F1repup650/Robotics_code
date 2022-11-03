@@ -23,6 +23,7 @@ public class MecanumTeleOp extends LinearOpMode {
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("back_left");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("top_right");
         DcMotor motorBackRight = hardwareMap.dcMotor.get("back_right");
+        DcMotor motorArm = hardwareMap.dcMotor.get("arm_motor");
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
         motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -33,9 +34,10 @@ public class MecanumTeleOp extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y; // Remember, this is reversed!
+            double y = gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
-            double rx = -gamepad1.right_stick_x;
+            double rx = gamepad1.right_stick_x;
+            double ax = gamepad2.right_stick_x;
 
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio, but only when
@@ -45,10 +47,12 @@ public class MecanumTeleOp extends LinearOpMode {
             double backLeftPower = ((y - x + rx) / denominator);
             double frontRightPower = ((y - x - rx) / denominator);
             double backRightPower = ((y + x - rx) / denominator);
+            double armPower = ax;
             motorFrontLeft.setPower(frontLeftPower);
             motorBackLeft.setPower(backLeftPower);
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
+            motorArm.setPower(ax);
         }
     }
 }
