@@ -14,6 +14,7 @@ public class autotest2 extends LinearOpMode
     DcMotor tRight;
     DcMotor bLeft;
     DcMotor bRight;
+    DcMotor mArm;
     double FWDSPD = 0.3;
     double TRNSPD = 0.25;
     double STRSPD = 0.3;
@@ -32,13 +33,18 @@ public class autotest2 extends LinearOpMode
         tRight = hardwareMap.dcMotor.get("top_right");
         bLeft = hardwareMap.dcMotor.get("back_left");
         bRight = hardwareMap.dcMotor.get("back_right");
+        mArm = hardwareMap.dcMotor.get("arm_motor");
         motor.init();
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
         waitForStart();
         motor.enableEncoders();
+        runtime.reset();
         motor.target(5000,5000,5000,5000);
         motor.forward(ENCSPD);
+        while (opModeIsActive() && (runtime.seconds()<1.0)){
+            telemetry.addData("Path","Step 1: %4.1f S Elapsed", runtime.seconds());
+        }
         motor.stop();
         runtime.reset();
         while (opModeIsActive()) {
@@ -53,6 +59,7 @@ public class autotest2 extends LinearOpMode
             tRight.setDirection(DcMotor.Direction.FORWARD);
             bLeft.setDirection(DcMotor.Direction.REVERSE);
             bRight.setDirection(DcMotor.Direction.FORWARD);
+            mArm.setDirection(DcMotor.Direction.FORWARD);
             tLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             tRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             bLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
