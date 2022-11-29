@@ -20,6 +20,7 @@ public class TestClawServo extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // Declare our motors
         // Make sure your ID's match your configuration
+        servoControl servo = new servoControl();
         DcMotor motorFrontLeft = hardwareMap.dcMotor.get("top_left");
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("back_left");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("top_right");
@@ -59,26 +60,10 @@ public class TestClawServo extends LinearOpMode {
             motorBackRight.setPower(backRightPower);
             motorArm.setPower(ax);
              */
-            clawPower = x;
-            if ( clawPower > 0 )
-            {
-                claw.setDirection(Servo.Direction.FORWARD);
-            }
-            else
-            {
-                claw.setDirection(Servo.Direction.REVERSE);
-            }
-            wristPower = rx;
-            if ( wristPower > 0 )
-            {
-                wrist.setDirection(Servo.Direction.FORWARD);
-            }
-            else
-            {
-                wrist.setDirection(Servo.Direction.REVERSE);
-            }
-            claw.setPosition( claw.getPosition() + clawPower );
-            wrist.setPosition( wrist.getPosition() + wristPower );
+            clawPower = servo.stickControl( x );
+            wristPower = servo.stickControl( rx );
+            claw.setPosition( clawPower );
+            wrist.setPosition( wristPower );
         }
     }
 }
