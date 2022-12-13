@@ -5,6 +5,10 @@ labels: [
   "enhancement",
   "Teleop"
 ]
+assignees: [
+  "Alexander-Maples",
+  "sudomaster9865"
+]
 body:
   - type: textarea
     id: description
