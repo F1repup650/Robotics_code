@@ -42,6 +42,7 @@ public class autotest1 extends LinearOpMode {
             if(color.red() > color.blue() && color.red() > color.green())// If RED is greater than all other colors
             {
                 telemetry.addData("Park: ", "red 1");
+                telemetry.update();
                 sleep(1000);
                 motor.strafeLeft(STRSPD);
                 sleep(2600);
@@ -52,11 +53,13 @@ public class autotest1 extends LinearOpMode {
             if(color.green() > color.blue() && color.green() > color.red())// If GREEN is greater than all other colors
             {
                 telemetry.addData("Park: ", "green 2");
+                telemetry.update();
                 break;
             }
             if(color.blue() > color.red() && color.blue() > color.green())// If BLUE is greater than all other colors
             {
                 telemetry.addData("Park: ", "blue 3");
+                telemetry.update();
                 sleep(1000);
                 motor.strafeRight(STRSPD);
                 sleep(2600);
