@@ -76,7 +76,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 @TeleOp(name="Driver With working", group="Linear Opmode")
 //@Disabled
-public class workingController extends LinearOpMode {
+public class workingcontroller extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();

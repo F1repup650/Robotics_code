@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="Mecanum: Test Linear OpMode 2 Player", group="Production")
-public class MecanumTeleOp2Player extends LinearOpMode {
+public class mecanumteleop2player extends LinearOpMode {
     private boolean buttonPreviousState;
     Servo motorGrab;  // Eren said to do this to get the servo to work
     public boolean buttonClick (boolean button) {

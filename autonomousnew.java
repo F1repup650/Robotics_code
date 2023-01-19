@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous(name="Autonomous OpMode (Park and Place)")
-public class AutonomousNEW extends LinearOpMode {
+public class autonomousnew extends LinearOpMode {
     ColorSensor color;
     DcMotor tLeft;
     DcMotor tRight;

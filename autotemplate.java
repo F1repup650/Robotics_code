@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Name of Opmode", group="Name of Group")
-public class filename extends LinearOpMode
+public class autotemplate extends LinearOpMode
 {
     private final ElapsedTime runtime = new ElapsedTime();
     DcMotor tLeft;

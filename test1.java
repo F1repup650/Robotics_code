@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 
 @Autonomous
-public class Test1 extends LinearOpMode {
+public class test1 extends LinearOpMode {
     BNO055IMU imu;
     DcMotor leftMotor;
     DcMotor rightMotor;
