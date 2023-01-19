@@ -1,5 +1,5 @@
 # This is the Repo for Prowlers' Robotics code #
-(Format: filename.java   | Group name    | Name)
+(Format: filename.java   | Group name    | Name/Description)
 ### Contents ###
 - autotest1.java         | Production    | Autonomous OpMode (Direct Drive (DD)) - Park ONLY with encoders
 - autotest2.java         | Tests         | Autonomous OpMode (Motor Encoders (ME))
