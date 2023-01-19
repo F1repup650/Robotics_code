@@ -4,11 +4,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="Name of Opmode", group="Name of Group")
+@Disabled
+@Autonomous(name="autotemplate", group="Templates")
 public class autotemplate extends LinearOpMode
 {
     private final ElapsedTime runtime = new ElapsedTime();
