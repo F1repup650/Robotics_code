@@ -14,3 +14,4 @@
 - autonomousnew.java     | Production    | Autonomous OpMode (Park and Place)
 - autotemplate.java      | Templates     | Template For Autonomous OpModes
 - servocontrol.java      | N/A           | Servo Control Class
+- clawlimitfinder.java   | Tests         | DO NOT USE ME EXCEPT FOR TESTING!!!
