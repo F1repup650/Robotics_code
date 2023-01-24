@@ -13,15 +13,18 @@ public class clawlimitfinder extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         DcMotor motor = hardwareMap.dcMotor.get("motor_up");
         telemetry.addData("Initialized","True");
+        double roughpos = 0;
         waitForStart();
         if (isStopRequested()) return;
         while (opModeIsActive()) {
-            telemetry.addData("Motor Position: ", motor.getCurrentPosition());
-            telemetry.update();
             double rt = gamepad1.right_trigger;
             double lt = gamepad1.left_trigger;
             double tt = (lt * -1) + rt;
+            roughpos += tt;
             motor.setPower(tt);
+            telemetry.addData("Motor Position (getCurPos): ", motor.getCurrentPosition());
+            telemetry.addData("Motor Position (rough): ", roughpos);
+            telemetry.update();
         }
     }
 }
