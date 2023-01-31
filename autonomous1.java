@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -14,8 +15,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-
-@Autonomous(name="Autonomous OpMode (Direct Drive (DD)) - Park ONLY", group="Production")
+@Disabled
+@Autonomous(name="Autonomous OpMode DONT USE - Park ONLY", group="Production")
 public class autonomous1 extends LinearOpMode {
     // Define a variable for our color sensor
     ColorSensor color;

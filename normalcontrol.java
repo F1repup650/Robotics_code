@@ -10,15 +10,15 @@ public class normalcontrol {
     DcMotor mArm;
     public void init()
     {
-        tLeft.setDirection(DcMotor.Direction.REVERSE);
-        tRight.setDirection(DcMotor.Direction.FORWARD);
-        bLeft.setDirection(DcMotor.Direction.REVERSE);
-        bRight.setDirection(DcMotor.Direction.FORWARD);
-        mArm.setDirection(DcMotor.Direction.FORWARD);
         tLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         tRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        tLeft.setDirection(DcMotor.Direction.REVERSE);
+        tRight.setDirection(DcMotor.Direction.FORWARD);
+        bLeft.setDirection(DcMotor.Direction.FORWARD);
+        bRight.setDirection(DcMotor.Direction.REVERSE);
+        mArm.setDirection(DcMotor.Direction.FORWARD);
     }
     public void target(int tLTarget, int tRTarget, int bLTarget, int bRTarget)
     {

@@ -48,7 +48,7 @@ public class mecanumteleop2player extends LinearOpMode {
             double lt = gamepad2.left_trigger;
 
             int lbp = 2;
-            double rbp = 0.2;
+            double rbp = 0.30;
             if(buttonClick(lb)) {
                 lbp -= 1.5;
             }
@@ -63,7 +63,7 @@ public class mecanumteleop2player extends LinearOpMode {
             double tt = (lt * -1) + rt;
 
             if(buttonClick(rb)) {
-                rbp -= 0.1;
+                rbp -= 0.21;
             }
             motorGrab.setPosition(rbp);
 

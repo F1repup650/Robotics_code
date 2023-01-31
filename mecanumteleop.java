@@ -44,25 +44,25 @@ public class mecanumteleop extends LinearOpMode {
             double rt = gamepad1.right_trigger;
             double lt = gamepad1.left_trigger;
 
-            int rbp = 2;
-            double lbp = 0.25;
-            if(buttonClick(rb)) {
-                rbp -= 1.5;
+            double lbp = 2;
+            double rbp = 0.30;
+            if(buttonClick(lb)) {
+                lbp -= 1.5;
             }
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio, but only when
             // at least one is out of the range [-1, 1]
-            double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), rbp);
+            double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), lbp);
             double frontLeftPower = ((y + x + rx) / denominator);
             double backLeftPower = ((y - x + rx) / denominator);
             double frontRightPower = ((y - x - rx) / denominator);
             double backRightPower = ((y + x - rx) / denominator);
             double tt = (lt * -1) + rt;
 
-            if(buttonClick(lb)) {
-                lbp -= 0.2;
+            if(buttonClick(rb)) {
+                rbp -= 0.21;
             }
-            motorGrab.setPosition(lbp);
+            motorGrab.setPosition(rbp);
 
 
             motorFrontLeft.setPower(frontLeftPower);
