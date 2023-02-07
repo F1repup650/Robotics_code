@@ -34,6 +34,13 @@ public class normalcontrol {
         bLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+    public void enableEncPos()
+    {
+        tLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        tRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        bLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        bRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
     public void disableEncoders()
     {
         tLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

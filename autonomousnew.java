@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -17,81 +18,91 @@ public class autonomousnew extends LinearOpMode {
     DcMotor bRight;
     DcMotor mArm;
     Servo motorGrab;
+    BNO055IMU imu;
     String colorDet = "";
-    double FWDSPD = 0.35;
+    double FWDSPD = 0.4;
     double TRNSPD = 0.25;
     double STRSPD = 0.3;
     double ENCSPD = 0.3;
 
     @Override
     public void runOpMode() {
-        // CARSON THERE IS A CLASS FOR AUTONOMOUS MOTOR CONTROL!!! IN FACT, THERE'S TWO OF THEM!
-        mecanumcontrol motor = new mecanumcontrol();
+        // CARSON THERE IS A CLASS FOR AUTONOMOUS MOTOR CONTROL!!! IN FACT, THERE'S THREE OF THEM!
+        tLeft = hardwareMap.dcMotor.get("top_left");
+        tRight = hardwareMap.dcMotor.get("top_right");
+        bLeft = hardwareMap.dcMotor.get("back_left");
+        bRight = hardwareMap.dcMotor.get("back_right");
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.mode                = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled      = false;
+        // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
+        // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
+        // and named "imu".
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
+        telemetry.addData("Mode", "calibrating...");
+        telemetry.update();
+        // make sure the imu gyro is calibrated before continuing.
+        while (!isStopRequested() && !imu.isGyroCalibrated())
+        {
+            sleep(50);
+            idle();
+        }
+        telemetry.addData("Mode", "waiting for start");
+        telemetry.addData("imu calib status", imu.getCalibrationStatus().toString());
+        telemetry.update();
+        drivetrain motor = new drivetrain();
+        motor.leftBackMotor = bLeft;
+        motor.leftFrontMotor = tLeft;
+        motor.rightBackMotor = bRight;
+        motor.rightFrontMotor = tRight;
+        motor.imu = imu;
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        tLeft = hardwareMap.dcMotor.get("top_left");
-        motor.tLeft = tLeft;
-        tRight = hardwareMap.dcMotor.get("top_right");
-        motor.tRight = tRight;
-        bLeft = hardwareMap.dcMotor.get("back_left");
-        motor.bLeft = bLeft;
-        bRight = hardwareMap.dcMotor.get("back_right");
-        motor.bRight = bRight;
         color = hardwareMap.get(ColorSensor.class, "Color1");
         mArm = hardwareMap.dcMotor.get("motor_up");
-        motor.mArm = mArm;
         motorGrab = hardwareMap.servo.get("servo");
         motor.init();
         color = hardwareMap.get(ColorSensor.class, "Color1");
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
-        motor.disableEncoders();
         waitForStart();
         //---------------Motor_Stuff---------------
-        motor.forward(FWDSPD);
+        motor.moveDistance((24.0*1.25), FWDSPD);
         mArm.setPower(1.0);
         sleep(500);
         mArm.setPower(0.0);
-        sleep(1000);
-        motor.stop();
-        sleep(1000);
-        while(opModeIsActive()) {
-            colorDet = colorCheck();
-            if(colorDet.equals("red")) {
-                telemetry.addData("Red: ", color.red());
-                telemetry.update();
-                motor.reverse(FWDSPD);
-                sleep(500);
-                motor.stop();
-                sleep(1000);
-                tLeft.setPower(STRSPD);
-                tRight.setPower(-STRSPD);
-                bLeft.setPower(-STRSPD);
-                bRight.setPower(STRSPD);
-                sleep(600);
-                motor.stop();
-                motor.forward(STRSPD);
-                sleep(900);
-                motor.stop();
-            }
-            else if(colorDet.equals("blue")) {
-                telemetry.addData("Blue:", color.blue());
-                telemetry.update();
-                motor.reverse(FWDSPD);
-                sleep(500);
-                motor.stop();
-                sleep(1000);
-                tLeft.setPower(-STRSPD);
-                tRight.setPower(STRSPD);
-                bLeft.setPower(STRSPD);
-                bRight.setPower(-STRSPD);
-                sleep(600);
-                motor.stop();
-                motor.forward(STRSPD);
-                sleep(850);
-                motor.stop();
-            }
-
+        sleep(5000);
+        colorDet = colorCheck();
+        if(colorDet.equals("red")) {
+            telemetry.addData("Red: ", color.red());
+            telemetry.update();
+            motor.moveDistance(-(24.0*0.5), FWDSPD);
+            sleep(5000);
+            motor.rotate(-90,TRNSPD);
+            sleep(5000);
+            motor.moveDistance((24.0*0.5), FWDSPD);
+            sleep(900);
+            motor.stop();
+        }
+        else if(colorDet.equals("blue")) {
+            telemetry.addData("Blue:", color.blue());
+            telemetry.update();
+            motor.moveDistance(-(24.0*0.5), FWDSPD);
+            sleep(1000);
+            motor.rotate(90, TRNSPD);
+            sleep(600);
+            motor.moveForward((24.0*0.5), STRSPD);
+            sleep(850);
+        }
+        else {
+            telemetry.addData("Green:", color.green());
+            telemetry.update();
+        }
+        while (opModeIsActive()) {
+            sleep(5000);
         }
     }
     public String colorCheck() {
