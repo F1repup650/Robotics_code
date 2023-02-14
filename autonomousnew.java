@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name="Autonomous OpMode Park ONLY", group="Production")
+@Autonomous(name="Autonomous OpMode Park ONLY - DO NOT USE", group="Production")
 public class autonomousnew extends LinearOpMode {
     ColorSensor color;
     DcMotor tLeft;
