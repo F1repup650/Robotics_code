@@ -85,6 +85,7 @@ public class autonomousnewold extends LinearOpMode {
                 sleep(1200);
                 motor.stop();
             }
+            sleep(15000);
 
 
     }
