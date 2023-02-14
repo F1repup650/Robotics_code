@@ -1,0 +1,6 @@
+[commit]
+    gpgsign = true
+[user]
+    signingkey = 2FA3551D4BD496C7
+[gpg]
+    program = C:\Users\mapleale\AppData\Local\gnupg\bin\gpg.exe
