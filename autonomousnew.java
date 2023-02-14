@@ -59,6 +59,7 @@ public class autonomousnew extends LinearOpMode {
         motor.rightBackMotor = bRight;
         motor.rightFrontMotor = tRight;
         motor.imu = imu;
+        telemetry.addData("WARNING","Do NOT Use this OPMode! We don't have functional encoders yet!");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         color = hardwareMap.get(ColorSensor.class, "Color1");
